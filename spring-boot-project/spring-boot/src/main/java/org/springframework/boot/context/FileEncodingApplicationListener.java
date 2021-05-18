@@ -31,7 +31,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * UPPERCASE variant of that) to the name of a character encoding (e.g. "UTF-8") then this
  * initializer throws an exception when the {@code file.encoding} System property does not
  * equal it.
- *
+ * 如果系统文件编码和环境中期望值不匹配则停止应用启动的应用监听器。默认情况下没有效果，但是如果设置了
+ * spring.mandatory_file_encoding属性为UTF-8，初始化器会抛出异常当系统文件编码不相等
  * <p>
  * The System property {@code file.encoding} is normally set by the JVM in response to the
  * {@code LANG} or {@code LC_ALL} environment variables. It is used (along with other

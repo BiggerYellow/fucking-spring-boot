@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * {@link ApplicationContext#getId() ApplicationContext ID}. The
  * {@code spring.application.name} property is used to create the ID. If the property is
  * not set {@code application} is used.
- *
+ * 设置应用上下的ID。使用spring.application.name属性创建id。如果这个属性没有设置，"application"将会被使用
  * @author Dave Syer
  * @author Andy Wilkinson
  * @since 1.0.0

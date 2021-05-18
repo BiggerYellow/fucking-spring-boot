@@ -24,7 +24,7 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * {@link ApplicationListener} to cleanup caches once the context is loaded.
- *
+ * 一旦加载了上下文就清除缓存
  * @author Phillip Webb
  */
 class ClearCachesApplicationListener implements ApplicationListener<ContextRefreshedEvent> {

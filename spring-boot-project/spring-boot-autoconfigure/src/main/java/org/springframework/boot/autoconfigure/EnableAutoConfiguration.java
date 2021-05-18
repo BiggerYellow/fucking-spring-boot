@@ -40,10 +40,14 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * have {@code tomcat-embedded.jar} on your classpath you are likely to want a
  * {@link TomcatServletWebServerFactory} (unless you have defined your own
  * {@link ServletWebServerFactory} bean).
+ * 开启Spring应用上下文的自动配置，尝试猜测和配置你可能需要的类。自动配置类通常应用基于你的classpath和你定义的bean。
+
  * <p>
  * When using {@link SpringBootApplication @SpringBootApplication}, the auto-configuration
  * of the context is automatically enabled and adding this annotation has therefore no
  * additional effect.
+ * 当使用@SpringBootApplication注解时，上下文的自动配置自动开启且添加这个注解没有任何额外的作用
+
  * <p>
  * Auto-configuration tries to be as intelligent as possible and will back-away as you
  * define more of your own configuration. You can always manually {@link #exclude()} any
@@ -51,6 +55,8 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * have access to them). You can also exclude them via the
  * {@code spring.autoconfigure.exclude} property. Auto-configuration is always applied
  * after user-defined beans have been registered.
+ * 自动配置尝试尽可能的智能，且将像你一样返回定义更多你的配置。你可以手动去除任何你不想应用的配置。
+ * 你可以排除他们通过spring.autoconfigure.exclude配置。自动配置总是在注册了用户定义的bean之后应用
  * <p>
  * The package of the class that is annotated with {@code @EnableAutoConfiguration},
  * usually via {@code @SpringBootApplication}, has specific significance and is often used
@@ -58,6 +64,8 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * It is generally recommended that you place {@code @EnableAutoConfiguration} (if you're
  * not using {@code @SpringBootApplication}) in a root package so that all sub-packages
  * and classes can be searched.
+ *用@EnableAutoConfiguration注释的类的包，通常通过@SpringBootApplication注解，有特殊的意义且经常使用作为默认值。
+ * 例如，它将在扫描@Entity类时使用。通常建议使用@EnableAutoConfiguration注解在根包中，这样所有的子包和类都可以被扫描到
  * <p>
  * Auto-configuration classes are regular Spring {@link Configuration @Configuration}
  * beans. They are located using the {@link SpringFactoriesLoader} mechanism (keyed
@@ -65,7 +73,8 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * {@link Conditional @Conditional} beans (most often using
  * {@link ConditionalOnClass @ConditionalOnClass} and
  * {@link ConditionalOnMissingBean @ConditionalOnMissingBean} annotations).
- *
+ * 自动配置类是常规的Spring的@Configuration 的bean。他们使用SpringFactoriesLoader定位。
+ * 通常自动配置bean是@Conditional修饰的类
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @since 1.0.0
@@ -79,14 +88,19 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+//将主配置类所在的包及子包里面所有的组件扫描加载到Spring容器中
 @AutoConfigurationPackage
+//通过selectImports将自动配置类xxxAutoConfiguration导入到容器中
 @Import(AutoConfigurationImportSelector.class)
 public @interface EnableAutoConfiguration {
 
+	//	 * 当自动配置开启时可以用于重写的环境属性
 	String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration";
 
 	/**
 	 * Exclude specific auto-configuration classes such that they will never be applied.
+	 * 排除特定自动配置的类，使得他们不会被应用
+
 	 * @return the classes to exclude
 	 */
 	Class<?>[] exclude() default {};
@@ -94,6 +108,7 @@ public @interface EnableAutoConfiguration {
 	/**
 	 * Exclude specific auto-configuration class names such that they will never be
 	 * applied.
+	 * 排除特定自动配置的类名，使得他们不会被应用
 	 * @return the class names to exclude
 	 * @since 1.3.0
 	 */

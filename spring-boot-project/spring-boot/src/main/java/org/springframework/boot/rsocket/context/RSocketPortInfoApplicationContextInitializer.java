@@ -36,9 +36,10 @@ import org.springframework.core.env.PropertySource;
  * ports that {@link RSocketServer} servers are actually listening on. The property
  * {@literal "local.rsocket.server.port"} can be injected directly into tests using
  * {@link Value @Value} or obtained via the {@link Environment}.
+ * 设置环境属性为 RSocketServer服务实际上监听的端口。 local.rsocket.server.port可以被注入通过@Value或从Environment中获得
  * <p>
  * Properties are automatically propagated up to any parent context.
- *
+ * 属性会自动传播到任何父上下文
  * @author Verónica Vásquez
  * @author Eddú Meléndez
  * @since 2.2.0

@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
 /**
  * Generates ANSI encoded output, automatically attempting to detect if the terminal
  * supports ANSI.
- *
+ * 生成ANSI编码输出，自动尝试检测中断是否支持ANSI
  * @author Phillip Webb
  * @since 1.0.0
  */

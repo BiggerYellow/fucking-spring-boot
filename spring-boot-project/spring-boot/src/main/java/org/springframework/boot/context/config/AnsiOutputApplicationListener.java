@@ -28,7 +28,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * An {@link ApplicationListener} that configures {@link AnsiOutput} depending on the
  * value of the property {@code spring.output.ansi.enabled}. See {@link Enabled} for valid
  * values.
- *
+ * 基于spring.output.anso.enabled属性配置ANSI输出的应用监听器
+
  * @author Raphael von der Grün
  * @author Madhura Bhave
  * @since 1.2.0

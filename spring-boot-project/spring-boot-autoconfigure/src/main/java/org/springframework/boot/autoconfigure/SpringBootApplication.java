@@ -50,6 +50,7 @@ import org.springframework.data.repository.Repository;
 @Documented
 @Inherited
 @SpringBootConfiguration
+//该注解的作用是开启自动配置
 @EnableAutoConfiguration
 @ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
 		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
@@ -111,6 +112,8 @@ public @interface SpringBootApplication {
 	 * method interception, implemented through a runtime-generated CGLIB subclass which
 	 * comes with limitations such as the configuration class and its methods not being
 	 * allowed to declare {@code final}.
+	 * 指定Bean方法是否应该被代理，以便执行bean生命周期，返回共享的单例bean实例当在用户代码中直接调用@bean方法。
+	 * 该功能需要方法拦截，通过运行时生成的CGLIB子类实现带有一些限制，比如配置类和他的方法不能被声明为final
 	 * <p>
 	 * The default is {@code true}, allowing for 'inter-bean references' within the
 	 * configuration class as well as for external calls to this configuration's
@@ -119,10 +122,13 @@ public @interface SpringBootApplication {
 	 * self-contained and designed as a plain factory method for container use, switch
 	 * this flag to {@code false} in order to avoid CGLIB subclass processing.
 	 * <p>
+	 * 默认为true，该配置类允许bean间引用，以及对该配置的外部调用@bean方法，例如来自另一个配置类。
+	 * 如果这不需要的话，因为每个特定配置的Bean方法是自包含和设计为一个普通的工厂方法为容器使用，设置这个flag为false以避免CGLIB的子类处理
 	 * Turning off bean method interception effectively processes {@code @Bean} methods
 	 * individually like when declared on non-{@code @Configuration} classes, a.k.a.
 	 * "@Bean Lite Mode" (see {@link Bean @Bean's javadoc}). It is therefore behaviorally
 	 * equivalent to removing the {@code @Configuration} stereotype.
+	 * 单独的关闭Bean方法拦截可以有效的处理Bean方法，亦称，Bean Lite模式。因此他行为上等价于删除@Confuguration原型
 	 * @since 2.2
 	 * @return whether to proxy {@code @Bean} methods
 	 */

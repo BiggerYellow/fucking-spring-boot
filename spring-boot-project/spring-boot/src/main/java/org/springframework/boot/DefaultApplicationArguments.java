@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
 
 /**
  * Default implementation of {@link ApplicationArguments}.
- *
+ * ApplicationArguments的默认实现类
  * @author Phillip Webb
  * @since 1.4.1
  */

@@ -31,11 +31,13 @@ import org.springframework.core.annotation.AliasFor;
  * {@link Configuration @Configuration}. Can be used as an alternative to the Spring's
  * standard {@code @Configuration} annotation so that configuration can be found
  * automatically (for example in tests).
+ * 表明一个类提供Springboot应用的@Configuration.用来替代Spring标准的@Configuration注解，可以自动发现配置
+
  * <p>
  * Application should only ever include <em>one</em> {@code @SpringBootConfiguration} and
  * most idiomatic Spring Boot applications will inherit it from
  * {@code @SpringBootApplication}.
- *
+ * 应用应该包含一个@SpringBootConfiguration注解并且大多数惯用的SpringBoot应用将继承@SpringBootConfiguration
  * @author Phillip Webb
  * @author Andy Wilkinson
  * @since 1.4.0

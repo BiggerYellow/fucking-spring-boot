@@ -46,6 +46,7 @@ public interface AutoConfigurationImportListener extends EventListener {
 
 	/**
 	 * Handle an auto-configuration import event.
+	 * 处理自动配置导入事件
 	 * @param event the event to respond to
 	 */
 	void onAutoConfigurationImportEvent(AutoConfigurationImportEvent event);

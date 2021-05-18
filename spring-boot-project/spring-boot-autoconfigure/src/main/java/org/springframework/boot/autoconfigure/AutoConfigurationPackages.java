@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
 /**
  * Class for storing auto-configuration packages for reference later (e.g. by JPA entity
  * scanner).
- *
+ * * 类用于存储自动配置包以供后面参考
  * @author Phillip Webb
  * @author Dave Syer
  * @author Oliver Gierke
@@ -56,6 +56,7 @@ public abstract class AutoConfigurationPackages {
 	/**
 	 * Determine if the auto-configuration base packages for the given bean factory are
 	 * available.
+	 * 判断给定的bean工厂的自动配置基础包是否有用
 	 * @param beanFactory the source bean factory
 	 * @return true if there are auto-config packages available
 	 */
@@ -66,6 +67,7 @@ public abstract class AutoConfigurationPackages {
 	/**
 	 * Return the auto-configuration base packages for the given bean factory.
 	 * @param beanFactory the source bean factory
+	 * 从给定的bean工厂中返回自动配置基础包
 	 * @return a list of auto-configuration packages
 	 * @throws IllegalStateException if auto-configuration is not enabled
 	 */
@@ -86,10 +88,15 @@ public abstract class AutoConfigurationPackages {
 	 * you don't call this method directly, but instead rely on the default convention
 	 * where the package name is set from your {@code @EnableAutoConfiguration}
 	 * configuration class or classes.
+	 * 以编程方式注册自动配置包名。后续的调用将给定的包名增加到已经注册的包名中。
+	 * 你可以使用这个方法人工定义将被
 	 * @param registry the bean definition registry
 	 * @param packageNames the package names to set
 	 */
 	public static void register(BeanDefinitionRegistry registry, String... packageNames) {
+		//判断已经注册的beanDefinitionMap中是否包含org.springframework.boot.autoconfigure.AutoConfigurationPackages
+		//存在则包名添加到basePackages中
+		//不存在则注册org.springframework.boot.autoconfigure.AutoConfigurationPackages这个bean
 		if (registry.containsBeanDefinition(BEAN)) {
 			BeanDefinition beanDefinition = registry.getBeanDefinition(BEAN);
 			ConstructorArgumentValues constructorArguments = beanDefinition.getConstructorArgumentValues();
@@ -115,6 +122,7 @@ public abstract class AutoConfigurationPackages {
 	/**
 	 * {@link ImportBeanDefinitionRegistrar} to store the base package from the importing
 	 * configuration.
+	 * ImportBeanDefinitionRegistrar来存储导入的基本包配置
 	 */
 	static class Registrar implements ImportBeanDefinitionRegistrar, DeterminableImports {
 

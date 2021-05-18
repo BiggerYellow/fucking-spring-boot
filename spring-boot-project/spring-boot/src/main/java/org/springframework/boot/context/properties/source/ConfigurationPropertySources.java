@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
 
 /**
  * Provides access to {@link ConfigurationPropertySource ConfigurationPropertySources}.
- *
+ * 提供对ConfigurationPropertySource的访问
  * @author Phillip Webb
  * @since 2.0.0
  */
@@ -62,8 +62,11 @@ public final class ConfigurationPropertySources {
 	 * {@link PropertySourcesPropertyResolver} calls to resolve using
 	 * {@link ConfigurationPropertyName configuration property names}.
 	 * <p>
+	 * 将ConfigurationPropertySource支持附加到指定的环境中。
+	 * 适合环境管理的每个PropertySource到ConfigurationPropertySource并允许经典的PropertySourcePropertyResolver调用以解决ConfigurationPropertyNmae
 	 * The attached resolver will dynamically track any additions or removals from the
 	 * underlying {@link Environment} property sources.
+	 * 附加的解析器将动态跟踪任何来自基础的属性源的任何添加和删除
 	 * @param environment the source environment (must be an instance of
 	 * {@link ConfigurableEnvironment})
 	 * @see #get(Environment)

@@ -28,7 +28,7 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * A collection of {@link SpringApplicationRunListener}.
- *
+ * Spring应用执行监听者的集合
  * @author Phillip Webb
  */
 class SpringApplicationRunListeners {
@@ -41,43 +41,47 @@ class SpringApplicationRunListeners {
 		this.log = log;
 		this.listeners = new ArrayList<>(listeners);
 	}
-
+	//监听者发布启动中事件
 	void starting() {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.starting();
 		}
 	}
 
+	//监听者发布环境准备完成事件
 	void environmentPrepared(ConfigurableEnvironment environment) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.environmentPrepared(environment);
 		}
 	}
 
+	//监听者发布上下文准备完成事件
 	void contextPrepared(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.contextPrepared(context);
 		}
 	}
 
+	//监听者发布上下文加载完成事件
 	void contextLoaded(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.contextLoaded(context);
 		}
 	}
-
+	//监听者发布启动完成事件
 	void started(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.started(context);
 		}
 	}
 
+	//监听者发布运行中事件
 	void running(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.running(context);
 		}
 	}
-
+	//监听者发布失败事件
 	void failed(ConfigurableApplicationContext context, Throwable exception) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			callFailedListener(listener, context, exception);

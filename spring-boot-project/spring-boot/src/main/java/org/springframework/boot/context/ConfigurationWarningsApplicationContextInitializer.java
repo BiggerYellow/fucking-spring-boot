@@ -45,7 +45,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link ApplicationContextInitializer} to report warnings for common misconfiguration
  * mistakes.
- *
+ * 告警常见的错误配置
  * @author Phillip Webb
  * @since 1.2.0
  */

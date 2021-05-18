@@ -72,6 +72,7 @@ class BeanDefinitionLoader {
 	/**
 	 * Create a new {@link BeanDefinitionLoader} that will load beans into the specified
 	 * {@link BeanDefinitionRegistry}.
+	 * 创建一个新的BeanDefinitionLoader来加载bean到指定的BeanDefinitionRegistry中
 	 * @param registry the bean definition registry that will contain the loaded beans
 	 * @param sources the bean sources
 	 */
@@ -120,6 +121,7 @@ class BeanDefinitionLoader {
 
 	/**
 	 * Load the sources into the reader.
+	 * 加载资源到reader中 主要就是加载主类
 	 * @return the number of loaded beans
 	 */
 	int load() {

@@ -30,7 +30,7 @@ import org.springframework.core.Ordered;
  * {@link BeanFactoryPostProcessor} to set lazy-init on bean definitions that are not
  * {@link LazyInitializationExcludeFilter excluded} and have not already had a value
  * explicitly set.
- *
+ *BeanFactoryPostProcessor可以在没有 LazyInitializationExcludeFilter排除且尚未显示设置值的bean定义上设置懒加载
  * @author Andy Wilkinson
  * @author Madhura Bhave
  * @author Tyler Van Gorder

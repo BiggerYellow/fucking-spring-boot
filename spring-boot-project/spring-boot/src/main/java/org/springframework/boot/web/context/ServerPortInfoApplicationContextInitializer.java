@@ -37,6 +37,7 @@ import org.springframework.util.StringUtils;
  * ports that {@link WebServer} servers are actually listening on. The property
  * {@literal "local.server.port"} can be injected directly into tests using
  * {@link Value @Value} or obtained via the {@link Environment}.
+ * 设置环境属性 为WebServer服务实际监听的端口。local.server.port可以使用@Value或通过环境获得来注入
  * <p>
  * If the {@link WebServerInitializedEvent} has a
  * {@link WebServerApplicationContext#getServerNamespace() server namespace} , it will be
