@@ -41,11 +41,14 @@ import org.springframework.util.ClassUtils;
  * compliant classes using {@code javax.inject} annotations. Allows for registering
  * classes one by one (specifying class names as config location) as well as for classpath
  * scanning (specifying base packages as config location).
+ * ServletWebServerApplicationContext 接受注解类作为输入，特别是@Configuration注解修饰的类，还有@Component注解修饰的类和使用inject注解的JSR-330兼容的类.
+ * 允许一对一注册类（将类名指定为配置位置），以及进行类路径扫描（将基本包指定为配置位置）
  * <p>
  * Note: In case of multiple {@code @Configuration} classes, later {@code @Bean}
  * definitions will override ones defined in earlier loaded files. This can be leveraged
  * to deliberately override certain bean definitions via an extra Configuration class.
- *
+ * 请注意：如果有多个@Configuration类，随后@Bean定义将覆盖在较早加载的文件中定义的定义。
+ * 可以利用此属性通过一个额外的Configuration类来故意覆盖某些bean定义
  * @author Phillip Webb
  * @since 1.0.0
  * @see #register(Class...)
@@ -56,8 +59,10 @@ import org.springframework.util.ClassUtils;
 public class AnnotationConfigServletWebServerApplicationContext extends ServletWebServerApplicationContext
 		implements AnnotationConfigRegistry {
 
+	//主要用途用于注册用注解描述的bean
 	private final AnnotatedBeanDefinitionReader reader;
 
+	//主要用于扫描bea定义并注册bean定义
 	private final ClassPathBeanDefinitionScanner scanner;
 
 	private final Set<Class<?>> annotatedClasses = new LinkedHashSet<>();
