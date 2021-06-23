@@ -61,23 +61,31 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 /**
  * A {@link WebApplicationContext} that can be used to bootstrap itself from a contained
  * {@link ServletWebServerFactory} bean.
+ * 一个WebApplicationContext可以被用于启动自身从一个包含的ServletWebServerFactory bean
  * <p>
  * This context will create, initialize and run an {@link WebServer} by searching for a
  * single {@link ServletWebServerFactory} bean within the {@link ApplicationContext}
  * itself. The {@link ServletWebServerFactory} is free to use standard Spring concepts
  * (such as dependency injection, lifecycle callbacks and property placeholder variables).
+ * 这个上下文将被创建，初始化且运行一个webServer通过新增一个简单的ServletWebServerFactory bean在上下文中。
+ * 这个ServletWebServerFactory免费试用标准的spring概念
  * <p>
  * In addition, any {@link Servlet} or {@link Filter} beans defined in the context will be
  * automatically registered with the web server. In the case of a single Servlet bean, the
  * '/' mapping will be used. If multiple Servlet beans are found then the lowercase bean
  * name will be used as a mapping prefix. Any Servlet named 'dispatcherServlet' will
  * always be mapped to '/'. Filter beans will be mapped to all URLs ('/*').
+ * 此外，任何servlet或filter bean定义在上文中的将被自动注册通过web服务。这种情况下一个简单的servletbean，'/'映射将被使用。
+ * 如果多重servlet bean被发现，然后小写bean 名称将被作为映射前缀使用。任何叫dispatcherServlet的servlet将总是设置到 '/'.
+ * 过滤器bean将映射到所有url '/*'
  * <p>
  * For more advanced configuration, the context can instead define beans that implement
  * the {@link ServletContextInitializer} interface (most often
  * {@link ServletRegistrationBean}s and/or {@link FilterRegistrationBean}s). To prevent
  * double registration, the use of {@link ServletContextInitializer} beans will disable
  * automatic Servlet and Filter bean registration.
+ * 对于更高级的配置，这个上下文可以代替定义实现ServletContextInitializer接口或 FilterRegistrationBean 的bean。
+ * 为了防止双重注册，ServletContextInitializer bean的使用将禁用自动注册servlet和filter
  * <p>
  * Although this context can be used directly, most developers should consider using the
  * {@link AnnotationConfigServletWebServerApplicationContext} or

@@ -22,7 +22,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * SPI interface to be implemented by most if not all {@link WebServerApplicationContext
  * web server application contexts}. Provides facilities to configure the context, in
  * addition to the methods in the {WebServerApplicationContext} interface.
- *
+ * 大部分的WebServerApplicationContext实现的接口。提供配置上下文的能力，除了在WebServerApplicationContext接口中方法
  * @author Phillip Webb
  * @since 2.0.0
  */

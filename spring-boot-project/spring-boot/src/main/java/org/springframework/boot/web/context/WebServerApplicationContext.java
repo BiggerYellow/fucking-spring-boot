@@ -23,6 +23,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Interface to be implemented by {@link ApplicationContext application contexts} that
  * create and manage the lifecycle of an embedded {@link WebServer}.
+ * 由ApplicationContext实现的接口 用于创建和管理嵌入式的web服务的上生命周期
  *
  * @author Phillip Webb
  * @since 2.0.0
