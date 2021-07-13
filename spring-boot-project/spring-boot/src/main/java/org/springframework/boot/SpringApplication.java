@@ -334,10 +334,13 @@ public class SpringApplication {
 			//打印spring标记
 			Banner printedBanner = printBanner(environment);
 			//根据web应用类型创建指定的应用上下文
+			//注意:这里反射创建AnnotationConfigServletWebServerApplicationContext时,构造中创建AnnotatedBeanDefinitionReader中的AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry)方法很重要
+			//它将几个常见的BeanPostProcessor和BeanFactoryPostProcessor注册到注册表中  最重要的是internalConfigurationAnnotationProcessor来解析Configuration的配置类
 			context = createApplicationContext();
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
 			//准备上下文
+			//在其中的load方法中将启动主函数注册到注册表中 即BeanDefinitionMap
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
 			//刷新上下文
 			refreshContext(context);
@@ -805,7 +808,7 @@ public class SpringApplication {
 
 	/**
 	 * Refresh the underlying {@link ApplicationContext}.
-	 * 刷新底层上下文
+	 * 刷新底层上下文 主要就是加载所有的bean
 	 * @param applicationContext the application context to refresh
 	 */
 	protected void refresh(ApplicationContext applicationContext) {

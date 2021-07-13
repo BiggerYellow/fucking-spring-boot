@@ -134,6 +134,7 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 
 	/**
 	 * Register ServletContextAwareProcessor.
+	 * 注册ServletContextAwareProcessor, 主要作用就是将servletContext传递给bean
 	 * @see ServletContextAwareProcessor
 	 */
 	@Override

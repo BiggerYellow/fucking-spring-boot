@@ -42,6 +42,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
  * {@link ApplicationContextInitializer} to create a shared
  * {@link CachingMetadataReaderFactory} between the
  * {@link ConfigurationClassPostProcessor} and Spring Boot.
+ * ApplicationContextInitializer 用来创建一个共享的CachingMetadataReaderFactory 在ConfigurationClassPostProcessor和springboot之间
  *
  * @author Phillip Webb
  */
@@ -81,21 +82,28 @@ class SharedMetadataReaderFactoryContextInitializer
 
 		@Override
 		public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+			//通过org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors方法调用实现了BeanDefinitionRegistryPostProcessor的方法
+			//注册名为org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory的bean
 			register(registry);
+			//配置ConfiguratonClass的后置处理器  给org.springframework.context.annotation.internalConfigurationAnnotationProcessor的bean定义设置org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory属性
 			configureConfigurationClassPostProcessor(registry);
 		}
 
 		private void register(BeanDefinitionRegistry registry) {
+			//获取SharedMetadataReaderFactoryBean的bean定义
 			BeanDefinition definition = BeanDefinitionBuilder
 					.genericBeanDefinition(SharedMetadataReaderFactoryBean.class, SharedMetadataReaderFactoryBean::new)
 					.getBeanDefinition();
+			//通过注册表注册bean
 			registry.registerBeanDefinition(BEAN_NAME, definition);
 		}
 
 		private void configureConfigurationClassPostProcessor(BeanDefinitionRegistry registry) {
 			try {
+				//获取注册表中的org.springframework.context.annotation.internalConfigurationAnnotationProcessor
 				BeanDefinition definition = registry
 						.getBeanDefinition(AnnotationConfigUtils.CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME);
+				//将metadataReaderFactory设置到该bean定义的属性资源中
 				definition.getPropertyValues().add("metadataReaderFactory", new RuntimeBeanReference(BEAN_NAME));
 			}
 			catch (NoSuchBeanDefinitionException ex) {

@@ -23,6 +23,7 @@ import org.springframework.core.env.StandardEnvironment;
  * {@link Environment} implementation to be used by {@code Reactive}-based web
  * applications. All web-related (reactive-based) {@code ApplicationContext} classes
  * initialize an instance by default.
+ * 用于基于reactive的web应用的Environment实现。所有基于reactive的web相关的上下文默认初始化一个实例
  *
  * @author Phillip Webb
  * @since 2.0.0
