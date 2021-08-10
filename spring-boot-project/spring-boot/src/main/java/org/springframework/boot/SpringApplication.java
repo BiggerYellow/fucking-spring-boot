@@ -340,7 +340,9 @@ public class SpringApplication {
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
 			//准备上下文
-			//在其中的load方法中将启动主函数注册到注册表中 即BeanDefinitionMap
+			//主要做了两件事:
+			// 1.调用前面实例化的ApplicationContextInitializer的initialize方式初始化上下文
+			// 2.在其中的load方法中将启动主函数bean定义注册到注册表中 beanDefinitionMap
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
 			//刷新上下文
 			refreshContext(context);
@@ -439,7 +441,7 @@ public class SpringApplication {
 		//获取并加载所有资源
 		Set<Object> sources = getAllSources();
 		Assert.notEmpty(sources, "Sources must not be empty");
-		//加载资源
+		//加载资源 即注册主函数的bean到注册表中beanDefinitionMap
 		load(context, sources.toArray(new Object[0]));
 		//监听者发布上下文已加载事件
 		listeners.contextLoaded(context);
@@ -643,6 +645,8 @@ public class SpringApplication {
 						"Unable create a default ApplicationContext, please specify an ApplicationContextClass", ex);
 			}
 		}
+		//这里实例化 org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext 调用构造函数  创建AnnotatedBeanDefinitionReader类时会创建后置处理器
+		// 例如org.springframework.context.annotation.ConfigurationClassPostProcessor来处理配置
 		return (ConfigurableApplicationContext) BeanUtils.instantiateClass(contextClass);
 	}
 
