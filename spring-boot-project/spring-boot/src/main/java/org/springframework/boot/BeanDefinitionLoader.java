@@ -51,6 +51,8 @@ import org.springframework.util.StringUtils;
  * simple facade over {@link AnnotatedBeanDefinitionReader},
  * {@link XmlBeanDefinitionReader} and {@link ClassPathBeanDefinitionScanner}. See
  * {@link SpringApplication} for the types of sources that are supported.
+ * 从底层源加载bean定义,包括xml和java配置.
+ * 充当AnnotatedBeanDefinitionReader、XmlBeanDefinitionReader、ClassPathBeanDefinitionScanner的简单外观.
  *
  * @author Phillip Webb
  * @see #setBeanNameGenerator(BeanNameGenerator)

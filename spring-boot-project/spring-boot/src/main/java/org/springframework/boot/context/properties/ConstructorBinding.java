@@ -26,6 +26,8 @@ import java.lang.annotation.Target;
  * Annotation that can be used to indicate that configuration properties should be bound
  * using constructor arguments rather than by calling setters. Can be added at the type
  * level (if there is an unambiguous constructor) or on the actual constructor to use.
+ * 注解用于表明 配置属性应该使用构造参数绑定而不是调用set方法.
+ * 可以在类型级别添加(如果有明确的构造函数)或实际使用的构造函数
  *
  * @author Phillip Webb
  * @since 2.2.0

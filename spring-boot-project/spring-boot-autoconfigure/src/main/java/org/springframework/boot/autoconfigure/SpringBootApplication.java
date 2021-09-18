@@ -39,7 +39,8 @@ import org.springframework.data.repository.Repository;
  * auto-configuration} and {@link ComponentScan component scanning}. This is a convenience
  * annotation that is equivalent to declaring {@code @Configuration},
  * {@code @EnableAutoConfiguration} and {@code @ComponentScan}.
- *
+ * 声明一个配置类,他声明一个或多个@Bean方法且触发 EnableAutoConfiguration自动配置和 ComponentScan组件扫描.
+ * 这是一个便利的注解等同于声明 @Configuration、@EnableAutoConfiguration 和 @ComponentScan
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @author Andy Wilkinson
@@ -58,6 +59,7 @@ public @interface SpringBootApplication {
 
 	/**
 	 * Exclude specific auto-configuration classes such that they will never be applied.
+	 * 排除特定的自动配置类,以致他们永远不会被应用
 	 * @return the classes to exclude
 	 */
 	@AliasFor(annotation = EnableAutoConfiguration.class)
@@ -66,6 +68,7 @@ public @interface SpringBootApplication {
 	/**
 	 * Exclude specific auto-configuration class names such that they will never be
 	 * applied.
+	 * 排除特定的自动配置类名 以致他们永远不会被应用
 	 * @return the class names to exclude
 	 * @since 1.3.0
 	 */
@@ -75,12 +78,15 @@ public @interface SpringBootApplication {
 	/**
 	 * Base packages to scan for annotated components. Use {@link #scanBasePackageClasses}
 	 * for a type-safe alternative to String-based package names.
+	 * 用于扫描带注解组件的基础包. 使用scanBasePackageClasses作为基于字符串的包名称的类型安全替代方案
 	 * <p>
 	 * <strong>Note:</strong> this setting is an alias for
 	 * {@link ComponentScan @ComponentScan} only. It has no effect on {@code @Entity}
 	 * scanning or Spring Data {@link Repository} scanning. For those you should add
 	 * {@link org.springframework.boot.autoconfigure.domain.EntityScan @EntityScan} and
 	 * {@code @Enable...Repositories} annotations.
+	 * 注意:这个设置只是 @ComponentScan的别名. 这对@Entity扫描或Spring Data Repository扫描没有影响.
+	 * 应该新增 @EntityScan和 @Enable...Repositories注解 来处理这种情况
 	 * @return base packages to scan
 	 * @since 1.3.0
 	 */
@@ -90,15 +96,19 @@ public @interface SpringBootApplication {
 	/**
 	 * Type-safe alternative to {@link #scanBasePackages} for specifying the packages to
 	 * scan for annotated components. The package of each class specified will be scanned.
+	 * scanBasePackages的类型安全替代方案, 用于指定要扫描带注解的组件.
+	 * 包下的每个指定类将被扫描
 	 * <p>
 	 * Consider creating a special no-op marker class or interface in each package that
 	 * serves no purpose other than being referenced by this attribute.
+	 * 考虑在每个包中创建一个特殊的无操作标记类或接口,除了被此属性引用外, 没有其他用途
 	 * <p>
 	 * <strong>Note:</strong> this setting is an alias for
 	 * {@link ComponentScan @ComponentScan} only. It has no effect on {@code @Entity}
 	 * scanning or Spring Data {@link Repository} scanning. For those you should add
 	 * {@link org.springframework.boot.autoconfigure.domain.EntityScan @EntityScan} and
 	 * {@code @Enable...Repositories} annotations.
+	 * 同上
 	 * @return base packages to scan
 	 * @since 1.3.0
 	 */
@@ -112,7 +122,7 @@ public @interface SpringBootApplication {
 	 * method interception, implemented through a runtime-generated CGLIB subclass which
 	 * comes with limitations such as the configuration class and its methods not being
 	 * allowed to declare {@code final}.
-	 * 指定Bean方法是否应该被代理，以便执行bean生命周期，返回共享的单例bean实例当在用户代码中直接调用@bean方法。
+	 * 指定Bean方法是否应该被代理，以便执行bean生命周期，返回共享的单例bean实例即使在用户代码中直接调用@bean方法。
 	 * 该功能需要方法拦截，通过运行时生成的CGLIB子类实现带有一些限制，比如配置类和他的方法不能被声明为final
 	 * <p>
 	 * The default is {@code true}, allowing for 'inter-bean references' within the
