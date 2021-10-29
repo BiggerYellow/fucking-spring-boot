@@ -322,7 +322,7 @@ public class SpringApplication {
 		configureHeadlessProperty();
 		//获取spring上下文启动监听者  从META-INF/spring.factories中获取SpringApplicationRunListener的实现类并加载
 		SpringApplicationRunListeners listeners = getRunListeners(args);
-		//发布启动中事件
+		//启动监听者
 		listeners.starting();
 		try {
 			//创建默认上下文参数
@@ -748,6 +748,7 @@ public class SpringApplication {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Loading source " + StringUtils.arrayToCommaDelimitedString(sources));
 		}
+		//创建主函数BeanDefinitionLoader并设置其基础属性
 		BeanDefinitionLoader loader = createBeanDefinitionLoader(getBeanDefinitionRegistry(context), sources);
 		if (this.beanNameGenerator != null) {
 			loader.setBeanNameGenerator(this.beanNameGenerator);
@@ -758,6 +759,7 @@ public class SpringApplication {
 		if (this.environment != null) {
 			loader.setEnvironment(this.environment);
 		}
+		//加载并注册主函数
 		loader.load();
 	}
 

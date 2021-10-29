@@ -157,8 +157,10 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 
 	@Override
 	protected void onRefresh() {
+		//调用父类GenericWebApplicationContext的刷新方法 注册themeSource
 		super.onRefresh();
 		try {
+			//创建tomcat服务
 			createWebServer();
 		}
 		catch (Throwable ex) {
@@ -185,6 +187,7 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 		WebServer webServer = this.webServer;
 		ServletContext servletContext = getServletContext();
 		if (webServer == null && servletContext == null) {
+			//通过TomcatServletWebServerFactory创建tomcat服务
 			ServletWebServerFactory factory = getWebServerFactory();
 			this.webServer = factory.getWebServer(getSelfInitializer());
 		}
